@@ -1,0 +1,65 @@
+.row .caption {
+
+	font-size:20px;
+	
+}
+.row .caption a{
+	color: #ffffff;
+	text-decoration:none;
+}
+
+.row .caption-mid {
+	color: #fff;
+	text-decoration:none;
+}
+
+ .caption-container {
+	min-width: 90px;
+	background: #3ECC7B;
+	border-left: 10px;
+	border-right: 0;
+	border-top:0;
+	border-bottom:0;
+	border-style: solid;
+	border-color: #449D44;
+	margin-bottom:3px;
+
+}
+
+.caption-container:hover {
+	background: #449D44;
+}
+
+.container-fluid h3 {
+
+	font-weight:bolder;
+	font-size:50px;
+}
+
+.thumbnail {
+	border:0px;
+
+}
+
+.container-fluid .submit-text  {
+	font-size: 30px;
+}
+
+#cssmenu ul li .logout-button, #cssmenu ul li .logout-button:hover {
+	background: #FFA43D;
+}
+
+#cssmenu ul li .login-button, #cssmenu ul li .logoin-button:hover, #cssmenu > ul > li.active > .login-button{
+
+	background: #FFA43D;
+}
+
+tbody .sorting_1 {
+	border-style: solid;
+	border-color: #449D44;
+
+}
+.sorting_1 h4{
+
+	
+}
