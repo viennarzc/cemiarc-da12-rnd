@@ -15,7 +15,6 @@ class Researches extends CI_Controller
 
 		if ($query == true ) 
 		{
-
 			$this->session->set_flashdata('check', 'Research Exist!');
 			redirect('researches/research_form');
 		}	else {

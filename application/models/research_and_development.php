@@ -131,11 +131,6 @@ class Research_And_Development extends CI_Model{
 		$this->db->order_by('lname asc');
 		$query = $this->db->get('researcher');
 
-		echo '<pre>';
-		print_r("inside model");
-		print_r($query);
-		echo '</pre>';
-
 		return $query->result();
 	}
 

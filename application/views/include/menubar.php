@@ -24,7 +24,7 @@
 		<!-- 					   <li><a href='#'><i class="fa fa-phone"></i> <span>CONTACT</span></a></li>
 		 -->		   				<?php if($this->session->userdata('user_data') != NULL): ?>
 		
-							   		<li class='active has-sub'><a href=''><i class="fa fa-user"></i> <span>Adminstration</span></a>
+							   		<li class='active has-sub'><a href=''><i class="fa fa-user"></i> <span>Administration</span></a>
 									      <ul>
 									         <li ><a href='<?php echo base_url('researches/research_form/'); ?>'><i class="fa fa-plus-circle"></i> <span>Add Research</span></a>
 									         </li>

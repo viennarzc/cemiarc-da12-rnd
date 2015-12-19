@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= "http://localhost/cemiarc-da12-rnd/";
+$config['base_url']	= "http://".$_SERVER['HTTP_HOST']."/cemiarc-da12-rnd/";
 
 /*
 |--------------------------------------------------------------------------

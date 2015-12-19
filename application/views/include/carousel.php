@@ -23,7 +23,7 @@
       </div>
     </div>
     
-    <div class="item ">
+    <div class="item">
       <center><img src="<?php echo base_url('assets/image/header_3.jpg');?>" alt=""></center>
       <div class="carousel-caption">
         
