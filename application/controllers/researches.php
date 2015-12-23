@@ -8,33 +8,51 @@ class Researches extends CI_Controller
 		$this->load->model('research_and_development');
 	}
 
+	private function clean_input($string) {
+		$cleaned_input = '';
+		$cleaned_input = (string) filter_var(trim($string), FILTER_SANITIZE_STRING);
+		return $cleaned_input;
+	}
+
+	private function clean_html($text) {
+		$cleaned_html = '';
+		$cleaned_html = filter_var(trim($text), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		return $cleaned_html;
+	}
+
+	private function format_date($date) {
+		$formatted_date = '';
+		$formatted_date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
+		return $formatted_date;
+	}
+
 	public function add_research()
 	{
 
-		$query = $this->research_and_development->check_exist(strtolower($this->input->post('title')));
+		$exists = $this->research_and_development->check_research_title_exist(clean_input($this->input->post('title')));
 
-		if ($query == true ) 
+		if ($exists) 
 		{
-			$this->session->set_flashdata('check', 'Research Exist!');
+			$this->session->set_flashdata('check', 'Research Title already exist.');
 			redirect('researches/research_form');
 		}	else {
-			if($this->input->post() != NULL) {
+			if ($this->input->post() != NULL) {
 			
-				$data = array('research_title' => ucwords($this->input->post('title')),
+				$data = array('research_title' => ucwords(cleaned_input($this->input->post('title'))),
 							   'date' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('date_published')))),
-							   'location_address' => ucwords($this->input->post('address')),
-							   'location_city' => ucwords($this->input->post('selected_city_municipality')),
-							   'approved_budget' => $this->input->post('approved_budget'),
+							   'location_address' => ucwords(clean_input($this->input->post('address'))),
+							   'location_city' => ucwords(clean_input($this->input->post('selected_city_municipality'))),
+							   'approved_budget' => floatval($this->input->post('approved_budget')),
 							   'duration_start' => $this->input->post('date_started'),
 							   'duration_end' => $this->input->post('date_ended'),
-							   'category' => ucwords($this->input->post('category')),
-							   'status' => ucwords($this->input->post('status')),
-							   'abstract' => $this->input->post('abstract'),
-							   'rationale' => $this->input->post('rationale'),
-							   'objectives' => $this->input->post('objectives'),
-							   'methodology' => $this->input->post('methodology'),
-							   'results_and_discussions' => $this->input->post('results_and_discussions'),
-							   'recommendation' => $this->input->post('recommendation'));
+							   'category' => ucwords(clean_input($this->input->post('category'))),
+							   'status' => ucwords(clean_input($this->input->post('status'))),
+							   'abstract' => clean_html($this->input->post('abstract')),
+							   'rationale' => clean_html($this->input->post('rationale')),
+							   'objectives' => clean_html($this->input->post('objectives')),
+							   'methodology' => clean_html($this->input->post('methodology')),
+							   'results_and_discussions' => clean_html($this->input->post('results_and_discussions')),
+							   'recommendation' => clean_html($this->input->post('recommendation')));
 				$research_id = $this->research_and_development->add_research($data);
 
 				foreach ($this->input->post('selected_researchers') as $value) {
@@ -53,9 +71,8 @@ class Researches extends CI_Controller
 				}
 		
 				if ($data != NULL) {
-				
-				$this->session->set_flashdata('notification', 'New Data is save!');
-				$this->session->set_flashdata('alert', 'success');
+					$this->session->set_flashdata('notification', 'New Data is save!');
+					$this->session->set_flashdata('alert', 'success');
 				}
 
 				redirect('researches/research_individual/'.$research_id);
@@ -68,7 +85,7 @@ class Researches extends CI_Controller
 
 	public function update($id)
 	{
-		if($this->input->post() != NULL) {
+		if ($this->input->post() != NULL) {
 		
 			$data = array('research_title' => ucwords($this->input->post('title')),
 						   'date' => date('Y-m-d', strtotime(str_replace('-', '/', $this->input->post('date_published')))),

@@ -11,15 +11,9 @@ class Researchers extends CI_Controller
 	public function add_researcher()
 	{
 
-		$query = $this->research_and_development->check_name(strtolower($this->input->post('fname'), $this->input->post('mname'), $this->input->post('lname')));
-		
-		echo '<pre>';
-		print_r("check name ");
-		print_r($query);
-		echo '</pre>';
+		$exists = $this->research_and_development->check_researcher_name_exit($this->input->post('fname'), $this->input->post('mname'), $this->input->post('lname'));
 
-
-		if ($query == '1' ) 
+		if ($exists) 
 		{
 
 			$this->session->set_flashdata('check_name', 'Researcher Profile Exist!');
