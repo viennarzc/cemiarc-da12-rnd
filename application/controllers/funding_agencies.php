@@ -9,10 +9,18 @@ class Funding_Agencies extends CI_Controller
 		$this->load->model('research_and_development');
 	}
 
+	private function clean_input($string) {
+		$cleaned_input = '';
+		$cleaned_input = (string) filter_var(trim($string), FILTER_SANITIZE_STRING);
+		return $cleaned_input;
+	}
+
 	public function add_funding_agency()
 	{
-		$data = array('agency_name' => $this->input->post('agency_name'),
-					  'address' => $this->input->post('address'));
+		$data = array(
+						'agency_name' => $this->clean_input($this->input->post('agency_name')),
+						'address' => $this->clean_input($this->input->post('address'))
+					);
 
 		if ($data != NULL) {
 			$id = $this->research_and_development->add_funding_agency($data);
@@ -26,8 +34,10 @@ class Funding_Agencies extends CI_Controller
 	public function update($id)
 	{
 		if ($this->input->post()) {
-			$data = array('agency_name' => $this->input->post('agency_name'),
-						  'address' => $this->input->post('address'));
+			$data = array(
+						'agency_name' => $this->clean_input($this->input->post('agency_name')),
+						'address' => $this->clean_input($this->input->post('address'))
+					);
 			$query = $this->research_and_development->update_funding_agency($id, $data);
 
 			if ($query) {

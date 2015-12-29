@@ -8,7 +8,7 @@
 
 	<script src="<?php echo base_url('assets/js/jquery-2.1.1.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-	<script src="<?php echo base_url('assets/js/summernote.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/js/summernote.min.js'); ?>"></script>
 	<script src="<?php echo base_url('assets/js/bootstrap-datepicker.js'); ?>"></script>
  	<script type="text/javascript" src="<?php echo base_url('assets/js/script.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-latest.js');?>"></script>
@@ -44,10 +44,6 @@
 
 
 	<script type="text/javascript">
-		$('textarea').summernote({
-			height: 300
-		});
-
 		$('#abstract').summernote({
 			height: 300
 		});
